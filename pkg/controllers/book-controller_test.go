@@ -36,9 +36,9 @@ func TestCreateBook(t *testing.T) {
 	author := "Test Author2"
 	publication := "Test Publication2"
 
-	book.Name = &name
-	book.Author = &author
-	book.Publication = &publication
+	book.Name = name
+	book.Author = author
+	book.Publication = publication
 
 	postBook, _ := json.Marshal(book)
 	reader := bytes.NewReader(postBook)
@@ -55,7 +55,7 @@ func TestCreateBook(t *testing.T) {
 
 	var responseBook models.Book
 	err := json.Unmarshal(body, &responseBook)
-	responseName := *responseBook.Name
+	responseName := responseBook.Name
 	testBook.ID = *&responseBook.ID
 	assert.Nil(t, err)
 	assert.Equal(t, name, responseName)
@@ -75,9 +75,9 @@ func TestUpdateBook(t *testing.T) {
 	author := "Test Author3"
 	publication := "Test Publication3"
 
-	book.Name = &name
-	book.Author = &author
-	book.Publication = &publication
+	book.Name = name
+	book.Author = author
+	book.Publication = publication
 
 	postBook, _ := json.Marshal(book)
 	reader := bytes.NewReader(postBook)

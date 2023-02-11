@@ -70,13 +70,13 @@ func UpdateBook(w http.ResponseWriter, r *http.Request) error {
 
 	bookDetail, db, err := models.GetBookById(ID)
 
-	if bookDetail.Name != nil {
+	if &bookDetail.Name != nil {
 		bookDetail.Name = UpdateBook.Name
 	}
-	if bookDetail.Author != nil {
+	if &bookDetail.Author != nil {
 		bookDetail.Author = UpdateBook.Author
 	}
-	if bookDetail.Publication != nil {
+	if &bookDetail.Publication != nil {
 		bookDetail.Publication = UpdateBook.Publication
 	}
 	db.Save(&bookDetail)

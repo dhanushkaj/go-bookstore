@@ -7,10 +7,10 @@ import (
 var db *gorm.DB
 
 type Book struct {
-	ID          uint    `gorm:"primay key;autoincrement" json:"id"`
-	Name        *string `json:"name"`
-	Author      *string `json:"author"`
-	Publication *string `json:"publication"`
+	ID          uint   `gorm:"primay key;autoincrement" json:"id"`
+	Name        string `json:"name"`
+	Author      string `json:"author"`
+	Publication string `json:"publication"`
 }
 
 func InitBook(newDb *gorm.DB) {
