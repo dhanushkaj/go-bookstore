@@ -39,7 +39,8 @@ func NewConnection(config *Config) (*gorm.DB, error) {
 
 func InitDB() (*Repository, error) {
 
-	err := godotenv.Load("../../../.env")
+	env := os.Getenv("APP_ENV")
+	err := godotenv.Load("../../" + "." + env + "env")
 
 	if err != nil {
 		log.Fatal(err)

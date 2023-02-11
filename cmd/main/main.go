@@ -1,8 +1,9 @@
 package main
 
 import (
-	"log"
+	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/dhanushkaj/go-bookstore/pkg/models"
 	"github.com/dhanushkaj/go-bookstore/pkg/repository"
@@ -18,5 +19,15 @@ func main() {
 	models.InitBook(r.DB)
 	routes.RegisterBookstoreRoutes(api)
 
-	log.Fatal(http.ListenAndServe("localhost:3000", router))
+	srv := &http.Server{
+		Handler:      router,
+		Addr:         "localhost:3000",
+		WriteTimeout: 10 * time.Second,
+		ReadTimeout:  10 * time.Second,
+		IdleTimeout:  10 * time.Second,
+	}
+
+	if err := srv.ListenAndServe(); err != nil {
+		fmt.Println(err)
+	}
 }
