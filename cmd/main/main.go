@@ -32,7 +32,7 @@ func main() {
 
 	srv := &http.Server{
 		Handler:      router,
-		Addr:         "localhost:3000",
+		Addr:         ":3000",
 		WriteTimeout: 10 * time.Second,
 		ReadTimeout:  10 * time.Second,
 		IdleTimeout:  10 * time.Second,
