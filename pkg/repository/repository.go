@@ -5,7 +5,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -39,13 +38,6 @@ func NewConnection(config *Config) (*gorm.DB, error) {
 
 func InitDB() (*Repository, error) {
 
-	env := os.Getenv("APP_ENV")
-	err := godotenv.Load("../../" + "." + env + "env")
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
 	config := &Config{
 		Host:     os.Getenv("DB_HOST"),
 		Port:     os.Getenv("DB_PORT"),
@@ -56,6 +48,8 @@ func InitDB() (*Repository, error) {
 	}
 
 	db, err := NewConnection(config)
+
+	log.Println("================ ", os.Getenv("DB_HOST"))
 
 	if err != nil {
 		log.Fatal("could not load the database")
