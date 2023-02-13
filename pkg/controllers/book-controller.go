@@ -83,3 +83,16 @@ func UpdateBook(w http.ResponseWriter, r *http.Request) error {
 	res, _ := json.Marshal(bookDetail)
 	return utils.WriteJSON(w, res, http.StatusOK, nil)
 }
+
+func GetBookByNameAndAuthor(w http.ResponseWriter, r *http.Request) error {
+	vars := mux.Vars(r)
+	name := vars["name"]
+	author := vars["author"]
+	books, _, err := models.GetBookByNameAndAuthor(name, author)
+
+	if err != nil {
+		fmt.Println("error while returning books")
+	}
+	res, _ := json.Marshal(books)
+	return utils.WriteJSON(w, res, http.StatusOK, nil)
+}

@@ -36,6 +36,16 @@ func GetBookById(Id int64) (*Book, *gorm.DB, error) {
 
 }
 
+func GetBookByNameAndAuthor(name string, author string) ([]Book, *gorm.DB, error) {
+
+	query := `SELECT * FROM books where books.name=? and books.author=?`
+	var results []Book
+	err := db.Raw(query, name, author).Scan(&results).Error
+
+	return results, db, err
+
+}
+
 func DeleteBook(Id int64) (Book, error) {
 	var book Book
 	err := db.Where("ID=?", Id).Delete(&book).Error

@@ -14,5 +14,6 @@ var RegisterBookstoreRoutes = func(router *mux.Router) {
 	router.HandleFunc("/book/{bookId}", utils.MakeHttpHandler(controllers.GetBookById)).Methods("GET")
 	router.HandleFunc("/book/{bookId}", utils.MakeHttpHandler(controllers.UpdateBook)).Methods(("PUT"))
 	router.HandleFunc("/book/{bookId}", utils.MakeHttpHandler(controllers.DeleteBook)).Methods(("DELETE"))
+	router.HandleFunc("/books/{name}/{author}", utils.MakeHttpHandler(controllers.GetBookByNameAndAuthor)).Methods("GET")
 
 }
